@@ -20,7 +20,7 @@ CREATE TABLE receivables (
   supply_id int NOT NULL,
   qty int NOT NULL,
   cost float NOT NULL,
-  created DATETIME,
+  created date,
 );
 
 CREATE TABLE inventory (
@@ -28,7 +28,7 @@ CREATE TABLE inventory (
   tavern_id int NOT NULL,
   receivables_id int NOT NULL,
   current_count int NOT NULL,
-  updated DATETIME,
+  updated date
 );
 
 CREATE TABLE status (
