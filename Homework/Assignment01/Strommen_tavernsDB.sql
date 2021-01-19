@@ -1,7 +1,10 @@
+USE MASTER;
 --drops taverns_db if it exists currently
 DROP DATABASE IF EXISTS taverns_db;
 --create taverns_db database
 CREATE DATABASE taverns_db;
+
+USE taverns_db;
 
 CREATE TABLE unit (
   id int NOT NULL IDENTITY(1,1),
@@ -20,7 +23,8 @@ CREATE TABLE receivables (
   supply_id int NOT NULL,
   qty int NOT NULL,
   cost float NOT NULL,
-  created date,
+  created DATETIME NOT NULL
+                DEFAULT CURRENT_TIMESTAMP, 
 );
 
 CREATE TABLE inventory (
@@ -28,7 +32,8 @@ CREATE TABLE inventory (
   tavern_id int NOT NULL,
   receivables_id int NOT NULL,
   current_count int NOT NULL,
-  updated date
+  updated DATETIME NOT NULL
+                DEFAULT CURRENT_TIMESTAMP,
 );
 
 CREATE TABLE status (
@@ -49,7 +54,8 @@ CREATE TABLE sales (
   user_id int NOT NULL,
   services_id int ,
   cost int NOT NULL,
-  created DATETIME,
+  created DATETIME NOT NULL
+                DEFAULT CURRENT_TIMESTAMP,
 );
 
 CREATE TABLE roles (
