@@ -26,8 +26,17 @@ select * from users;
 select * from tavernUsers;
 select * from roles;
 
-select tavernUsers.user_id, users.name, tavernUsers.role_id, roles.name
-from ((tavernUsers
-inner join users on tavernUsers.user_id=users.id) 
-inner join roles on tavernUsers.role_id=roles.id)
+select users.name as Users, roles.name as Roles
+from ((tavernUsers tu
+inner join users on tu.user_id=users.id) 
+inner join roles on tu.role_id=roles.id)
+where role_id = 7;
+
+--2 query admin users with tavern info
+
+select users.name as Users, roles.name as Roles, tavern.*
+from tavernUsers tu
+join tavern on tu.tavern_id=tavern.id
+inner join users on tu.user_id=users.id
+inner join roles on tu.role_id=roles.id
 where role_id = 7;
