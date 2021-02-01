@@ -29,7 +29,7 @@ CREATE TABLE receivables (
   supply_id int NOT NULL,
   qty int NOT NULL,
   cost float NOT NULL,
-  created DATETIME NOT NULL
+  created DATE NOT NULL
     DEFAULT CURRENT_TIMESTAMP, 
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE inventory (
   tavern_id int NOT NULL,
   receivables_id int NOT NULL,
   current_count int NOT NULL,
-  updated DATETIME NOT NULL
+  updated DATE NOT NULL
     DEFAULT CURRENT_TIMESTAMP,
 );
 
@@ -84,7 +84,7 @@ CREATE TABLE sales (
   tavern_id int NOT NULL,
   guests_id int NOT NULL,
   services_id int,
-  created DATETIME NOT NULL
+  created DATE NOT NULL
     DEFAULT CURRENT_TIMESTAMP,
 );
 
@@ -103,10 +103,10 @@ ALTER TABLE class ADD PRIMARY KEY (id);
 CREATE TABLE guests (
   id int NOT NULL IDENTITY(1,1),
   name VARCHAR(128) NOT NULL,
-  birthday DATETIME NOT NULL,
+  birthday DATE NOT NULL,
   status_id int NOT NULL,
   tavern_id int NOT NULL,
-  cakeday DATETIME NOT NULL 
+  cakeday DATE NOT NULL 
     DEFAULT CURRENT_TIMESTAMP
 );
 
