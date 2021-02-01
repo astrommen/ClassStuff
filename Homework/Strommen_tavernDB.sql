@@ -83,3 +83,15 @@ inner join guests g on gc.guest_id = g.id
 where lvl > 5
 group by g.name
 having count(class_id) >= 2
+
+--7 query guests with highest lvl
+--having trouble getting the class.type to show 
+--get msg 8120
+select g.name as Guest, max(gc.lvl) as ClassLvl
+--, c.type as Class
+from guestClasses gc
+inner join guests g on gc.guest_id = g.id
+--join class c on gc.class_id = c.id
+group by g.name
+
+--8 query guest
