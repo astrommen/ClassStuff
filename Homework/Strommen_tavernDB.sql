@@ -33,10 +33,30 @@ inner join roles on tu.role_id=roles.id)
 where role_id = 7;
 
 --2 query admin users with tavern info
-
 select users.name as Users, roles.name as Roles, tavern.*
 from tavernUsers tu
 join tavern on tu.tavern_id=tavern.id
 inner join users on tu.user_id=users.id
 inner join roles on tu.role_id=roles.id
 where role_id = 7;
+
+--3 query all guests
+select * from guestClasses;
+select * from guests;
+select * from class;
+
+select g.name as Guests, c.type as Class, gc.lvl
+from guestClasses gc
+inner join guests g on gc.guest_id = g.id
+inner join class c on gc.class_id = c.id
+order by Guests asc;
+
+--4 query top 10 sales in terms of price and services
+select * from sales;
+select * from services;
+
+select top 10 s.price as Price, s.name as Services
+from sales sa
+inner join services s on sa.services_id = s.id
+order by Price desc;
+
