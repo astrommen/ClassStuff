@@ -60,3 +60,18 @@ from sales sa
 inner join services s on sa.services_id = s.id
 order by Price desc;
 
+--5 query guests with 2 or more classes
+insert into guestClasses values
+(1, 200, 4),
+(1, 2, 1),
+(3, 1, 5),
+(5, 15, 3),
+(6, 5, 2);
+
+select * from guestClasses;
+
+select g.name as Guest, count(class_id) as ClassQty
+from guestClasses gc    
+inner join guests g on gc.guest_id = g.id
+group by g.name
+having count(class_id) >= 2
