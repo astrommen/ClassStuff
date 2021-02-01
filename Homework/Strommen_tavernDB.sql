@@ -74,4 +74,12 @@ select g.name as Guest, count(class_id) as ClassQty
 from guestClasses gc    
 inner join guests g on gc.guest_id = g.id
 group by g.name
+having count(class_id) >= 2;
+
+--6 query guests with 2 or more classes and lvl > 5
+select g.name as Guest, count(class_id) as ClassQty
+from guestClasses gc
+inner join guests g on gc.guest_id = g.id
+where lvl > 5
+group by g.name
 having count(class_id) >= 2
