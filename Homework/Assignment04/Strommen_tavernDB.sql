@@ -94,4 +94,16 @@ inner join guests g on gc.guest_id = g.id
 --join class c on gc.class_id = c.id
 group by g.name
 
+(select g_id, max(lvl) as MaxLvl
+from guestClass
+group by GuestID) as MaxClasses
+--matches max lvl to the guest
+where gc.ClassLvl = MaxClasses.MaxLvl AND g.guest_id = MaxClasses.guest_id
+
 --8 query guest
+update sales
+set created = '20200620', stayStart = '20200620'
+--roomStay_id = 1, stayStart = '20200619', stayEnd = '20200725'
+where id >=6 
+AND id <=8;
+select created from sales where created = '20210128';
