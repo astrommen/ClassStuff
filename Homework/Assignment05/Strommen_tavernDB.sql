@@ -94,7 +94,7 @@ GO
 if OBJECT_ID(N'PriceRange', N'if') is not null
 	drop function dbo.PriceRange
 	GO
-create function PriceRange(@price1 float, @price2 float)
+create function PriceRange(@minPrice float, @maxPrice float)
 returns table
 as
 return(
@@ -103,7 +103,7 @@ return(
 	join roomStays rs on s.roomStay_id = rs.id
 	join rooms r on rs.room_id = r.id
 	inner join tavern t on s.tavern_id = t.id
-	where (rs.rate >= @price1  and rs.rate <= @price2)
+	where (rs.rate between @minPrice and @maxPrice)
 );
 go
 
