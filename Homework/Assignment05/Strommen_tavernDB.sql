@@ -70,3 +70,21 @@ end;
 GO
 
 select dbo.ClassLabel(2) as ClassLabel;
+GO
+
+--5 function report for open rooms on a date
+create function Vacancies(@date date)
+returns table
+as
+return(
+	select distinct t.name as Tavern, r.roomNumber as Room# 
+	from sales s
+	inner join tavern t on s.tavern_id = t.id
+	inner join roomStays rs on s.roomStay_id = rs.id
+	inner join rooms r on rs.room_id = r.id
+	where (stayStart > '20200624' and stayEnd > '20200624')
+	or (stayStart < '20200624' and stayEnd < '20200624')
+);
+GO
+
+select * from dbo.Vacancies('20200624')
