@@ -82,9 +82,12 @@ return(
 	inner join tavern t on s.tavern_id = t.id
 	inner join roomStays rs on s.roomStay_id = rs.id
 	inner join rooms r on rs.room_id = r.id
-	where (stayStart > '20200624' and stayEnd > '20200624')
-	or (stayStart < '20200624' and stayEnd < '20200624')
+	where (stayStart > '@date' and stayEnd > '@date')
+	or (stayStart < '@date' and stayEnd < '@date')
 );
 GO
 
 select * from dbo.Vacancies('20200624')
+GO
+
+--6 like #5 but return report using price range
