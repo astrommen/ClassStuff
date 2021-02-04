@@ -47,3 +47,26 @@ from GuestClass gc
 inner join Guests g on gc.GuestID = g.ID
 inner join Class c on gc.ClassID = c.ID
 order by Guest asc;
+GO
+
+--4 function of lvl and returns grouping
+create function dbo.ClassLabel(@lvl int)
+returns nvarchar(16)
+as
+begin
+
+declare @label nvarchar
+
+return 
+	case
+		when @lvl >= 1 and @lvl < 5
+			then 'begginer'
+		when @lvl >= 5 and @lvl < 10
+			then 'intermediate'
+		when @lvl >=10
+			then 'expert'
+	end 
+end;
+GO
+
+select dbo.ClassLabel(2) as ClassLabel;
