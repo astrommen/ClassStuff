@@ -91,3 +91,23 @@ select * from dbo.Vacancies('20200624')
 GO
 
 --6 like #5 but return report using price range
+if OBJECT_ID(N'PriceRange', N'if') is not null
+	drop function dbo.PriceRange
+	GO
+create function PriceRange(@price1 float, @price2 float)
+returns table
+as
+return(
+	select distinct t.name as Tavern, r.roomNumber as Room#, rs.rate as RoomRate 
+	from sales s
+	join roomStays rs on s.roomStay_id = rs.id
+	join rooms r on rs.room_id = r.id
+	inner join tavern t on s.tavern_id = t.id
+	where (rs.rate >= @price1  and rs.rate <= @price2)
+);
+go
+
+select * from dbo.PriceRange(100, 300);
+go
+
+--7 command to input a room value less than cheapest
