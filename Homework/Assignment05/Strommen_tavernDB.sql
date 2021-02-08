@@ -100,8 +100,8 @@ as
 return(
 	select distinct t.name as Tavern, r.roomNumber as Room#, rs.rate as RoomRate 
 	from sales s
-	join roomStays rs on s.roomStay_id = rs.id
-	join rooms r on rs.room_id = r.id
+	inner join roomStays rs on s.roomStay_id = rs.id
+	inner join rooms r on rs.room_id = r.id
 	inner join tavern t on s.tavern_id = t.id
 	where (rs.rate between @minPrice and @maxPrice)
 );

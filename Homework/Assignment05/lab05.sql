@@ -360,6 +360,7 @@ CREATE TABLE SuppliesSales (
 	REFERENCES Guests(Id)
 	ON DELETE CASCADE,
 );
+go
 
 
 INSERT INTO SuppliesSales 
